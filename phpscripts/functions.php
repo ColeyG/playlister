@@ -8,5 +8,8 @@
 			$passArr[] = $alphabet[$n];
 		}
 		return implode($passArr);
-	}
+    }
+    function checkIns($string){
+        
+    }
 ?>

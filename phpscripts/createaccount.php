@@ -8,7 +8,7 @@
 
         $checkDB = "SELECT * FROM tbl_users WHERE users_uName = '{$un}'";
         $userCheck = mysqli_query($link,$checkDB);
-        $foundUserCheck=mysqli_fetch_array($userCheck,MYSQLI_ASSOC);
+        $foundUserCheck= mysqli_fetch_array($userCheck,MYSQLI_ASSOC);
         if($foundUserCheck['users_id']>0){
             $errmsg = "Username is taken.";
             return $errmsg;

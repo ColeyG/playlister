@@ -8,20 +8,23 @@
     $userSet=mysqli_query($link,$suserString);
     $users=mysqli_fetch_array($userSet, MYSQLI_ASSOC);
 
-    //print_r($users);
-
     if(isset($_POST['submit'])) {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
         $fullname = trim($_POST['fullname']);
+        /* CHECK AN SANITIZE INPUTS */
+        checkIns($username);
+        /* CHECK AN SANITIZE INPUTS */
         $email = trim($_POST['email']);
-        if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}
-        //echo $username." ".$fullname." ".$email." ".$password;
-        $result=createUser($username,$fullname,$email,$password);
-        $errmsg=$result;
+        if(strlen($password)<8){
+            $errmsg='Password length needs to be 8 characters or longer.';
+        }else{
+            if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}
+            // echo $username." ".$fullname." ".$email." ".$password;
+            $result=createUser($username,$fullname,$email,$password);
+            $errmsg=$result;
+        }
     }
-
-    echo randPass(32);
 
     mysqli_close($link);
 ?>
