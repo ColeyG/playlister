@@ -10,6 +10,10 @@
 		return implode($passArr);
     }
     function checkIns($string){
-        
+        if (ctype_alnum($string)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 ?>

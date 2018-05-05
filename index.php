@@ -12,17 +12,18 @@
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
         $fullname = trim($_POST['fullname']);
-        /* CHECK AN SANITIZE INPUTS */
-        checkIns($username);
-        /* CHECK AN SANITIZE INPUTS */
         $email = trim($_POST['email']);
-        if(strlen($password)<8){
-            $errmsg='Password length needs to be 8 characters or longer.';
+        if(checkIns($username)==true&&checkIns($password)==true&&checkIns($fullname)==true&&checkIns($email)==true){
+            if(strlen($password)<8){
+                $errmsg='Password length needs to be 8 characters or longer.';
+            }else{
+                if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}
+                // echo $username." ".$fullname." ".$email." ".$password;
+                $result=createUser($username,$fullname,$email,$password);
+                $errmsg=$result;
+            }
         }else{
-            if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}
-            // echo $username." ".$fullname." ".$email." ".$password;
-            $result=createUser($username,$fullname,$email,$password);
-            $errmsg=$result;
+            $errmsg='No special characters please.';
         }
     }
 
