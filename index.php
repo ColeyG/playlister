@@ -21,6 +21,8 @@
         $errmsg=$result;
     }
 
+    echo randPass(32);
+
     mysqli_close($link);
 ?>
 <!DOCTYPE html>

@@ -2,7 +2,7 @@
     ini_set('display_errors',1);
     error_reporting(E_ALL);
 
-    function createUser($un,$fun,$em,$pass){
+    function createUser($un,$fun,$em,$password){
         //echo $un.' '.$fun.' '.$em.' '.$pass;
         include('connect.php');
 
@@ -14,12 +14,13 @@
             return $errmsg;
         }else{
         $reg='regUser';
-        $createQ="INSERT INTO tbl_users VALUES(NULL,'{$un}','{$pass}','{$fun}','{$em}','{$reg}',NULL)";
+        $enPass=password_hash($password, PASSWORD_DEFAULT);
+        $createQ="INSERT INTO tbl_users VALUES(NULL,'{$un}','{$enPass}','{$fun}','{$em}','{$reg}',NULL)";
         $creating=mysqli_query($link,$createQ);
             if($creating){
-                echo 'Success!';
+                echo 'Success!<br>';
             }else{
-                echo 'Failure!';
+                echo 'Failure!<br>';
             }
         }
 
