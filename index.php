@@ -9,16 +9,17 @@
     $users=mysqli_fetch_array($userSet, MYSQLI_ASSOC);
 
     if(isset($_POST['submitCreate'])) {
-        $username = htmlspecialchars(trim($_POST['username']));
-        $password = trim($_POST['password']);
-        $fullname = htmlspecialchars(trim($_POST['fullname']));
-        $email = trim($_POST['email']);
+        $username = dbEscape($link,trim($_POST['username']));
+        $password = dbEscape($link,trim($_POST['password']));
+        $fullname = dbEscape($link,trim($_POST['fullname']));
+        $email = dbEscape($link,trim($_POST['email']));
         if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}else{
             if(checkIns($username)==true&&checkIns($password)==true&&checkIns($fullname)==true&&checkIns($email)==true){
                 if(strlen($password)<8){
                     $errmsg='Password length needs to be 8 characters or longer.';
                 }else{
                     // echo $username." ".$fullname." ".$email." ".$password;
+                    echo $username."-".$fullname."-".$email."-".$password;
                     $result=createUser($username,$fullname,$email,$password);
                     $errmsg=$result;
                 }
@@ -26,6 +27,10 @@
                 $errmsg='No special characters please.';
             }
         }
+        $username=replacer($username);
+        $password=replacer($password);
+        $fullname=replacer($fullname);
+        $email=replacer($email);
     }
 
     if(isset($_POST['submitLogin'])) {

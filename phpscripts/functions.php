@@ -10,16 +10,26 @@
 		return implode($passArr);
     }
     function checkIns($string){
-        $badChar = array(":",";","'","\"","/","\\","=","<",">","*");
-        $checkArray = str_split($string);
-        //print_r($checkArray);
-        for($i=0;$i<sizeof($checkArray);$i++){
-            for($x=0;$x<sizeof($badChar);$x++){
-                if($checkArray[$i]==$badChar[$x]){
-                    return false;
-                }
-            }
-        }
+        // $badChar = array();
+        // $checkArray = str_split($string);
+        // //print_r($checkArray);
+        // for($i=0;$i<sizeof($checkArray);$i++){
+        //     for($x=0;$x<sizeof($badChar);$x++){
+        //         if($checkArray[$i]==$badChar[$x]){
+        //             return false;
+        //         }
+        //     }
+        // }
         return true;
+    }
+
+    function dbEscape($link,$string){
+        return mysqli_real_escape_string($link,$string);
+    }
+
+    function replacer($string){
+        $replaceThese = array("\\","/");
+        $without = str_replace($replaceThese,"",$string);
+        return $without;
     }
 ?>
