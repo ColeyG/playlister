@@ -1,3 +1,5 @@
 <?php
-    // echo 'beep';
+    function login($user,$password){
+        echo "beep";
+    }
 ?>

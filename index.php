@@ -11,7 +11,7 @@
     if(isset($_POST['submitCreate'])) {
         $username = htmlspecialchars(trim($_POST['username']));
         $password = trim($_POST['password']);
-        $fullname = trim($_POST['fullname']);
+        $fullname = htmlspecialchars(trim($_POST['fullname']));
         $email = trim($_POST['email']);
         if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}else{
             if(checkIns($username)==true&&checkIns($password)==true&&checkIns($fullname)==true&&checkIns($email)==true){
@@ -28,24 +28,19 @@
         }
     }
 
-    // if(isset($_POST['submitLogin'])) {
-    //     $username = trim($_POST['username']);
-    //     $password = trim($_POST['password']);
-    //     $fullname = trim($_POST['fullname']);
-    //     $email = trim($_POST['email']);
-    //     if(checkIns($username)==true&&checkIns($password)==true&&checkIns($fullname)==true&&checkIns($email)==true){
-    //         if(strlen($password)<8){
-    //             $errmsg='Password length needs to be 8 characters or longer.';
-    //         }else{
-    //             if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}
-    //             // echo $username." ".$fullname." ".$email." ".$password;
-    //             $result=createUser($username,$fullname,$email,$password);
-    //             $errmsg=$result;
-    //         }
-    //     }else{
-    //         $errmsg='No special characters please.';
-    //     }
-    // }
+    if(isset($_POST['submitLogin'])) {
+        $usernameLG = htmlspecialchars(trim($_POST['username']));
+        $passwordLG = trim($_POST['password']);
+        if($usernameLG==''||$passwordLG==''){$errmsg='Missed a field';}else{
+            if(checkIns($usernameLG)==true&&checkIns($passwordLG)==true){
+                // echo $username." ".$fullname." ".$email." ".$password;
+                $result=login($usernameLG,$passwordLG);
+                $errmsg=$result;
+            }else{
+                $errmsg='No special characters please.';
+            }
+        }
+    }
 
     mysqli_close($link);
 ?>
@@ -77,10 +72,10 @@
     </form>
     <form action="index.php" method="post">
         <p>Username:</p>
-        <input type="text" name="username" value="<?php if(isset($username)){echo $username;}?>" class="input-group">
+        <input type="text" name="username" value="<?php if(isset($usernameLG)){echo $usernameLG;}?>" class="input-group">
         <br>
         <p>Password:</p>
-        <input type="text" name="fullname" value="<?php if(isset($fullname)){echo $fullname;}?>" class="input-group">
+        <input type="password" name="password" value="<?php if(isset($passwordLG)){echo $passwordLG;}?>" class="input-group">
         <br>
         <?php if(!empty($errmsg)){echo "<p class='danger'>".$errmsg."</p>";}?>
         <input type="submit" name="submitLogin" value="Login" class="btn btn-info m-1">
