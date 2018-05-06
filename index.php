@@ -8,24 +8,44 @@
     $userSet=mysqli_query($link,$suserString);
     $users=mysqli_fetch_array($userSet, MYSQLI_ASSOC);
 
-    if(isset($_POST['submit'])) {
-        $username = trim($_POST['username']);
+    if(isset($_POST['submitCreate'])) {
+        $username = htmlspecialchars(trim($_POST['username']));
         $password = trim($_POST['password']);
         $fullname = trim($_POST['fullname']);
         $email = trim($_POST['email']);
-        if(checkIns($username)==true&&checkIns($password)==true&&checkIns($fullname)==true&&checkIns($email)==true){
-            if(strlen($password)<8){
-                $errmsg='Password length needs to be 8 characters or longer.';
+        if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}else{
+            if(checkIns($username)==true&&checkIns($password)==true&&checkIns($fullname)==true&&checkIns($email)==true){
+                if(strlen($password)<8){
+                    $errmsg='Password length needs to be 8 characters or longer.';
+                }else{
+                    // echo $username." ".$fullname." ".$email." ".$password;
+                    $result=createUser($username,$fullname,$email,$password);
+                    $errmsg=$result;
+                }
             }else{
-                if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}
-                // echo $username." ".$fullname." ".$email." ".$password;
-                $result=createUser($username,$fullname,$email,$password);
-                $errmsg=$result;
+                $errmsg='No special characters please.';
             }
-        }else{
-            $errmsg='No special characters please.';
         }
     }
+
+    // if(isset($_POST['submitLogin'])) {
+    //     $username = trim($_POST['username']);
+    //     $password = trim($_POST['password']);
+    //     $fullname = trim($_POST['fullname']);
+    //     $email = trim($_POST['email']);
+    //     if(checkIns($username)==true&&checkIns($password)==true&&checkIns($fullname)==true&&checkIns($email)==true){
+    //         if(strlen($password)<8){
+    //             $errmsg='Password length needs to be 8 characters or longer.';
+    //         }else{
+    //             if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}
+    //             // echo $username." ".$fullname." ".$email." ".$password;
+    //             $result=createUser($username,$fullname,$email,$password);
+    //             $errmsg=$result;
+    //         }
+    //     }else{
+    //         $errmsg='No special characters please.';
+    //     }
+    // }
 
     mysqli_close($link);
 ?>
@@ -53,7 +73,17 @@
         <input type="password" name="password" value="<?php if(isset($password)){echo $password;}?>" class="input-group">
         <br>
         <?php if(!empty($errmsg)){echo "<p class='danger'>".$errmsg."</p>";}?>
-        <input type="submit" name="submit" value="Create User" class="btn btn-info m-1">
+        <input type="submit" name="submitCreate" value="Sign-Up" class="btn btn-info m-1">
+    </form>
+    <form action="index.php" method="post">
+        <p>Username:</p>
+        <input type="text" name="username" value="<?php if(isset($username)){echo $username;}?>" class="input-group">
+        <br>
+        <p>Password:</p>
+        <input type="text" name="fullname" value="<?php if(isset($fullname)){echo $fullname;}?>" class="input-group">
+        <br>
+        <?php if(!empty($errmsg)){echo "<p class='danger'>".$errmsg."</p>";}?>
+        <input type="submit" name="submitLogin" value="Login" class="btn btn-info m-1">
     </form>
     <script src='js/main.js'></script>
 </body>

@@ -10,10 +10,16 @@
 		return implode($passArr);
     }
     function checkIns($string){
-        if (ctype_alnum($string)) {
-            return true;
-        } else {
-            return false;
+        $badChar = array(":",";","'","\"","/","\\","=","<",">","*");
+        $checkArray = str_split($string);
+        print_r($checkArray);
+        for($i=0;$i<sizeof($checkArray);$i++){
+            for($x=0;$x<sizeof($badChar);$x++){
+                if($checkArray[$i]==$badChar[$x]){
+                    return false;
+                }
+            }
         }
+        return true;
     }
 ?>
