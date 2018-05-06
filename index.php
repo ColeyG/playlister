@@ -9,10 +9,10 @@
     $users=mysqli_fetch_array($userSet, MYSQLI_ASSOC);
 
     if(isset($_POST['submitCreate'])) {
-        $username = dbEscape($link,trim($_POST['username']));
-        $password = dbEscape($link,trim($_POST['password']));
-        $fullname = dbEscape($link,trim($_POST['fullname']));
-        $email = dbEscape($link,trim($_POST['email']));
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+        $fullname = trim($_POST['fullname']);
+        $email = trim($_POST['email']);
         if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}else{
             if(checkIns($username)==true&&checkIns($password)==true&&checkIns($fullname)==true&&checkIns($email)==true){
                 if(strlen($password)<8){
@@ -20,7 +20,7 @@
                 }else{
                     // echo $username." ".$fullname." ".$email." ".$password;
                     echo $username."-".$fullname."-".$email."-".$password;
-                    $result=createUser($username,$fullname,$email,$password);
+                    $result=createUser(dbEscape($link,$username),dbEscape($link,$fullname),dbEscape($link,$email),dbEscape($link,$password));
                     $errmsg=$result;
                 }
             }else{
@@ -34,8 +34,8 @@
     }
 
     if(isset($_POST['submitLogin'])) {
-        $usernameLG = htmlspecialchars(trim($_POST['username']));
-        $passwordLG = trim($_POST['password']);
+        $usernameLG = dbEscape(trim($_POST['username']));
+        $passwordLG = dbEscape(trim($_POST['password']));
         if($usernameLG==''||$passwordLG==''){$errmsg='Missed a field';}else{
             if(checkIns($usernameLG)==true&&checkIns($passwordLG)==true){
                 // echo $username." ".$fullname." ".$email." ".$password;
