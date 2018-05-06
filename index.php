@@ -27,10 +27,6 @@
                 $errmsg='No special characters please.';
             }
         }
-        $username=replacer($username);
-        $password=replacer($password);
-        $fullname=replacer($fullname);
-        $email=replacer($email);
     }
 
     if(isset($_POST['submitLogin'])) {

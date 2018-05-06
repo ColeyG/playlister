@@ -26,10 +26,4 @@
     function dbEscape($link,$string){
         return mysqli_real_escape_string($link,$string);
     }
-
-    function replacer($string){
-        $replaceThese = array("\\","/");
-        $without = str_replace($replaceThese,"",$string);
-        return $without;
-    }
 ?>
