@@ -1,6 +1,6 @@
 <?php
     $id=$_GET['id'];
-    echo $id;
+    //echo $id;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,8 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Playlister</title>
+    <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
+    <h1>Master Playlist</h1>
     <form action="index.php" method="post">
         <input type="text" name="link" value="">
         <input hidden type="text" value="<?php echo $id;?>">

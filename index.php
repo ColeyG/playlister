@@ -66,6 +66,7 @@
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
+    <h1>Playlister Login</h1>
     <form action="index.php" method="post">
         <p>Username:</p>
         <input type="text" name="username" value="<?php if(isset($username)){echo $username;}?>" class="input-group">
