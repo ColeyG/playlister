@@ -18,7 +18,7 @@
                 $_SESSION['uName'] = $foundUser['users_uName'];
                 $_SESSION['level'] = $foundUser['users_accLevel'];
                 $_SESSION['timeStart'] = date('U');
-                /* INSERT REDIRECT HERE */
+                redirect_to('home.php');
             }
         }else{
             $errmsg= "Username or Password is incorrect.";

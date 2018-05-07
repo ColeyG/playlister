@@ -18,6 +18,7 @@
         $createQ="INSERT INTO tbl_users VALUES(NULL,'{$un}','{$enPass}','{$fun}','{$em}','{$reg}',NULL)";
         $creating=mysqli_query($link,$createQ);
             if($creating){
+                redirect_to('home.php');
                 echo 'Success!<br>';
             }else{
                 echo 'Failure!';
