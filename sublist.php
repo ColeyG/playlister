@@ -14,7 +14,7 @@
 <body>
     <h1>Master Playlist</h1>
     <form action="index.php" method="post">
-        <input type="text" name="link" value="">
+        <input id='url' type="text" name="link" value="">
         <input hidden type="text" value="<?php echo $id;?>">
         <input hidden id="submit" type="submit" name="submitCreate" value="Submit" class="btn btn-info m-1">
         <a href='#' id="submitReal">Submit</a>
