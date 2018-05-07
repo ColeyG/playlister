@@ -4,9 +4,11 @@
     require_once('phpscripts/config.php');
     include('phpscripts/connect.php');
 
-    $suserString='SELECT * FROM tbl_users';
-    $userSet=mysqli_query($link,$suserString);
-    $users=mysqli_fetch_array($userSet, MYSQLI_ASSOC);
+    if(isset($_SESSION['uName'])){
+        // echo "Signed in as: ".$_SESSION['uName']."<br>";
+        // $time = date("U")-$_SESSION['timeStart'];
+        // echo "Session time: ".$time." seconds";
+    }
 
     if(isset($_POST['submitCreate'])) {
         $username = trim($_POST['username']);
@@ -39,15 +41,15 @@
     }
 
     if(isset($_POST['submitLogin'])) {
-        $usernameLG = dbEscape(trim($_POST['username']));
-        $passwordLG = dbEscape(trim($_POST['password']));
-        if($usernameLG==''||$passwordLG==''){$errmsg='Missed a field';}else{
+        $usernameLG = dbEscape($link,trim($_POST['username']));
+        $passwordLG = dbEscape($link,trim($_POST['password']));
+        if($usernameLG==''||$passwordLG==''){$errmsgLG='Missed a field';}else{
             if(checkIns($usernameLG)==true&&checkIns($passwordLG)==true){
                 // echo $username." ".$fullname." ".$email." ".$password;
                 $result=login($usernameLG,$passwordLG);
-                $errmsg=$result;
+                $errmsgLG=$result;
             }else{
-                $errmsg='No special characters please.';
+                $errmsgLG='No special characters please.';
             }
         }
     }
