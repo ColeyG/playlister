@@ -13,19 +13,28 @@
         $password = trim($_POST['password']);
         $fullname = trim($_POST['fullname']);
         $email = trim($_POST['email']);
+        if(leng($username,32)==true){
+            $errmsg='Username can only be 32 characters long.';
+        }else if(leng($fullname,100)==true){
+            $errmsg='Full name can only be 100 characters long.';
+        }else if(leng($password,50)==true){
+            $errmsg='Password can only be 50 characters long.';
+        }else if(leng($email,375)==true){
+            $errmsg='Email can only be 375 characters long.';
+        }else{
         if($username==''||$password==''||$fullname==''||$email==''){$errmsg='Missed a field';}else{
             if(checkIns($username)==true&&checkIns($password)==true&&checkIns($fullname)==true&&checkIns($email)==true){
                 if(strlen($password)<8){
                     $errmsg='Password length needs to be 8 characters or longer.';
                 }else{
-                    // echo $username." ".$fullname." ".$email." ".$password;
-                    echo $username."-".$fullname."-".$email."-".$password;
+                    //echo $username."-".$fullname."-".$email."-".$password;
                     $result=createUser(dbEscape($link,$username),dbEscape($link,$fullname),dbEscape($link,$email),dbEscape($link,$password));
                     $errmsg=$result;
                 }
             }else{
                 $errmsg='No special characters please.';
             }
+        }
         }
     }
 
@@ -68,8 +77,8 @@
         <p>Password:</p>
         <input type="password" name="password" value="<?php if(isset($password)){echo $password;}?>" class="input-group">
         <br>
-        <?php if(!empty($errmsg)){echo "<p class='danger'>".$errmsg."</p>";}?>
         <input type="submit" name="submitCreate" value="Sign-Up" class="btn btn-info m-1">
+        <?php if(!empty($errmsg)){echo "<p class='danger'>".$errmsg."</p>";}?>
     </form>
     <form action="index.php" method="post">
         <p>Username:</p>
@@ -78,8 +87,8 @@
         <p>Password:</p>
         <input type="password" name="password" value="<?php if(isset($passwordLG)){echo $passwordLG;}?>" class="input-group">
         <br>
-        <?php if(!empty($errmsg)){echo "<p class='danger'>".$errmsg."</p>";}?>
         <input type="submit" name="submitLogin" value="Login" class="btn btn-info m-1">
+        <?php if(!empty($errmsgLG)){echo "<p class='danger'>".$errmsgLG."</p>";}?>
     </form>
     <script src='js/main.js'></script>
 </body>

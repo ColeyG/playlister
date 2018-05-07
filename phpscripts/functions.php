@@ -26,4 +26,12 @@
     function dbEscape($link,$string){
         return mysqli_real_escape_string($link,$string);
     }
+
+    function leng($string,$length){
+        if (strlen($string)<=$length){
+            return false;
+        }else{
+            return true;
+        }
+    }
 ?>

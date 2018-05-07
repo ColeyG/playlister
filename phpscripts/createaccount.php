@@ -20,10 +20,9 @@
             if($creating){
                 echo 'Success!<br>';
             }else{
-                echo 'Failure!<br>';
+                echo 'Failure!';
             }
         }
-
         //(NULL,'{$username}','$enPass','{$email}',NULL,NULL,'{$userlvl}','{$fname}',FALSE,'$creationDate',TRUE)";
     }
 ?>
