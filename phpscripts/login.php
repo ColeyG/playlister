@@ -18,6 +18,7 @@
                 $_SESSION['uName'] = $foundUser['users_uName'];
                 $_SESSION['level'] = $foundUser['users_accLevel'];
                 $_SESSION['timeStart'] = date('U');
+                // echo $_SESSION['id'];
                 redirect_to('home.php');
             }
         }else{

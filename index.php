@@ -93,6 +93,5 @@
         <input type="submit" name="submitLogin" value="Login" class="btn btn-info m-1">
         <?php if(!empty($errmsgLG)){echo "<p class='danger'>".$errmsgLG."</p>";}?>
     </form>
-    <script src='js/main.js'></script>
 </body>
 </html>

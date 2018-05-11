@@ -2,8 +2,8 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 07, 2018 at 05:33 AM
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 11, 2018 at 01:54 PM
 -- Server version: 5.6.34-log
 -- PHP Version: 7.1.5
 
@@ -60,7 +60,6 @@ CREATE TABLE `tbl_tracks` (
   `tracks_type` varchar(50) DEFAULT NULL,
   `tracks_content` varchar(50) NOT NULL,
   `tracks_artist` varchar(64) NOT NULL,
-  `tracks_length` varchar(16) NOT NULL,
   `tracks_upvote` int(10) UNSIGNED NOT NULL,
   `tracks_image` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
