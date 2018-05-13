@@ -1,5 +1,6 @@
 (()=>{
     var subReal = document.getElementById('submitReal');
+    var sublistId=document.getElementById('subId').value;
 
     function processYoutube(data){
         console.log(data);
@@ -12,7 +13,7 @@
         id=id[1].split("/");
         id=id[0];
         submission.push(id);
-        console.log(submission);
+        //console.log(submission);
         //console.log(id);
         submitTrack('fullSubmit',submission);
     }
@@ -36,7 +37,7 @@
                 conType="youtube";
                 httpRequest.send();
             }else if(url[0]=='fullSubmitYT'){
-                httpRequest.open("GET",'phpscripts/youtubeSend.php?title='+url[1]+'&auth='+url[2]+'&image='+url[3]+'&contId='+url[4],true);
+                httpRequest.open("GET",'phpscripts/youtubeSend.php?title='+url[1]+'&auth='+url[2]+'&image='+url[3]+'&contId='+url[4]+'&subId='+sublistId,true);
                 conType="return";
                 httpRequest.send();
             }else{
@@ -47,7 +48,7 @@
         function processRequest(){
             if(httpRequest.readyState == XMLHttpRequest.DONE){
                 if(httpRequest.status === 200){
-                    //console.log(httpRequest.responseText);
+                    console.log(httpRequest.responseText);
                     let data = JSON.parse(httpRequest.responseText);
                     if(conType=="youtube"){
                         processYoutube(data);

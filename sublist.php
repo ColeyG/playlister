@@ -21,6 +21,7 @@
     <form action="index.php" method="post">
         <input id='url' type="text" name="link" value="">
         <input hidden id="submit" type="submit" name="submitCreate" value="Submit" class="btn btn-info m-1">
+        <input hidden id="subId" type="submit" name="subId" value="<?php echo $id;?>" class="btn btn-info m-1">
         <a href='#' id="submitReal">Submit</a>
     </form>
     <script src="js/main.js"></script>

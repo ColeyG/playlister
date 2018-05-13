@@ -2,8 +2,8 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: May 11, 2018 at 01:54 PM
+-- Host: localhost:3306
+-- Generation Time: May 13, 2018 at 05:08 AM
 -- Server version: 5.6.34-log
 -- PHP Version: 7.1.5
 
@@ -48,6 +48,13 @@ CREATE TABLE `tbl_sublist_tracks` (
   `tracks_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tbl_sublist_tracks`
+--
+
+INSERT INTO `tbl_sublist_tracks` (`id`, `sublist_id`, `tracks_id`) VALUES
+(1, 1, 11);
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +69,35 @@ CREATE TABLE `tbl_tracks` (
   `tracks_artist` varchar(64) NOT NULL,
   `tracks_upvote` int(10) UNSIGNED NOT NULL,
   `tracks_image` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_tracks`
+--
+
+INSERT INTO `tbl_tracks` (`tracks_id`, `tracks_title`, `tracks_type`, `tracks_content`, `tracks_artist`, `tracks_upvote`, `tracks_image`) VALUES
+(1, 'Immersion - Hitman in Real Life | Rooster Teeth', 'youtube', 'YD_Zh8IoZmI', 'Rooster Teeth', 0, 'https://i.ytimg.com/vi/YD_Zh8IoZmI/hqdefault.jpg'),
+(2, '\"Quote Me!\" - the Quotation Marks song from Grammaropolis - Lyrics Video', 'youtube', 'DwgJX1yepKg', 'Grammaropolis', 0, 'https://i.ytimg.com/vi/DwgJX1yepKg/hqdefault.jpg'),
+(3, 'Immersion - Destructibles in Real Life | Rooster Teeth', 'youtube', 'IiUGIRjvpus', 'Rooster Teeth', 0, 'https://i.ytimg.com/vi/IiUGIRjvpus/hqdefault.jpg'),
+(4, 'Immersion - Destructibles in Real Life | Rooster Teeth', 'youtube', 'IiUGIRjvpus', 'Rooster Teeth', 0, 'https://i.ytimg.com/vi/IiUGIRjvpus/hqdefault.jpg'),
+(5, 'How Disney&#039;s Anniversary Made &quot;Something out of Nothing&quot;', 'youtube', 'jwllKkPLBtM', 'Rob Plays', 0, 'https://i.ytimg.com/vi/jwllKkPLBtM/hqdefault.jpg'),
+(6, 'How Disney&#039;s Anniversary Made &quot;Something out of Nothing&quot;', 'youtube', 'jwllKkPLBtM', 'Rob Plays', 0, 'https://i.ytimg.com/vi/jwllKkPLBtM/hqdefault.jpg'),
+(7, 'How Disney&#039;s Anniversary Made &quot;Something out of Nothing&quot;', 'youtube', 'jwllKkPLBtM', 'Rob Plays', 0, 'https://i.ytimg.com/vi/jwllKkPLBtM/hqdefault.jpg'),
+(8, 'I Built the World&#039;s Fastest Pumpkin Boat', 'youtube', 'kP38bDokd40', 'William Osman', 0, 'https://i.ytimg.com/vi/kP38bDokd40/hqdefault.jpg'),
+(9, 'I Built the World&#039;s Fastest Pumpkin Boat', 'youtube', 'kP38bDokd40', 'William Osman', 0, 'https://i.ytimg.com/vi/kP38bDokd40/hqdefault.jpg'),
+(10, 'I Built the World&#039;s Fastest Pumpkin Boat', 'youtube', 'kP38bDokd40', 'William Osman', 0, 'https://i.ytimg.com/vi/kP38bDokd40/hqdefault.jpg'),
+(11, 'I Built the World&#039;s Fastest Pumpkin Boat', 'youtube', 'kP38bDokd40', 'William Osman', 0, 'https://i.ytimg.com/vi/kP38bDokd40/hqdefault.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_upvotes`
+--
+
+CREATE TABLE `tbl_upvotes` (
+  `upvote_id` int(10) UNSIGNED NOT NULL,
+  `users_id` int(10) UNSIGNED NOT NULL,
+  `tracks_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -100,6 +136,13 @@ CREATE TABLE `tbl_users_tracks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `tbl_users_tracks`
+--
+
+INSERT INTO `tbl_users_tracks` (`id`, `users_id`, `tracks_id`) VALUES
+(2, 23, 11);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -120,6 +163,12 @@ ALTER TABLE `tbl_sublist_tracks`
 --
 ALTER TABLE `tbl_tracks`
   ADD PRIMARY KEY (`tracks_id`);
+
+--
+-- Indexes for table `tbl_upvotes`
+--
+ALTER TABLE `tbl_upvotes`
+  ADD PRIMARY KEY (`upvote_id`);
 
 --
 -- Indexes for table `tbl_users`
@@ -146,7 +195,17 @@ ALTER TABLE `tbl_sublist`
 -- AUTO_INCREMENT for table `tbl_sublist_tracks`
 --
 ALTER TABLE `tbl_sublist_tracks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tbl_tracks`
+--
+ALTER TABLE `tbl_tracks`
+  MODIFY `tracks_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `tbl_upvotes`
+--
+ALTER TABLE `tbl_upvotes`
+  MODIFY `upvote_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tbl_users`
 --
@@ -156,7 +215,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_users_tracks`
 --
 ALTER TABLE `tbl_users_tracks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
