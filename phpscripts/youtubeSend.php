@@ -21,16 +21,17 @@
         $lastCon = mysqli_fetch_array($idQ);
         $lastID = $lastCon['tracks_id'];
 
-        //sending a query to tbl_users_tracks
+        //sending a query to tie users to tracks
         $userS="INSERT INTO tbl_users_tracks VALUES(NULL,$id,$lastID)";
         $userTrackQ=mysqli_query($link,$userS);
 
-        //sending a query to tbl_sublist_tracks
+        //sending a query to tie sublists to tracks
         $sublistS="INSERT INTO tbl_sublist_tracks VALUES(NULL,$sublistID,$lastID)";
         $sublistTrackQ=mysqli_query($link,$sublistS);
 
-        //Query here for upvotes
-        //WORK ON THE UPVOTER NEXT
+        //Query here for upvotes binds, might not use built in upvotes
+        $upvoteS="INSERT INTO tbl_upvotes VALUES(NULL,$id,$lastID)";
+        $upvoteQ=mysqli_query($link,$upvoteS);
 
     }else{
         echo json_encode("Failed at init.");
@@ -38,5 +39,5 @@
 
     mysqli_close($link);
 
-    echo json_encode("Worked");
+    echo json_encode($trackS);
 ?>
